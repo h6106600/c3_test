@@ -7,7 +7,7 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'mysql:host=localhost;dbname=mydb',
-	'username' => 'luke',
+	'username' => 'root',
 	'password' => '123456',
 	'database' => '',
 	'dbdriver' => 'pdo',

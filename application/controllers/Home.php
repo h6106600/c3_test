@@ -8,21 +8,22 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->model('features');
+        $this->load->model('posts');
+        $this->load->helper('url');
     }
 
-	public function show()
+	public function index()
 	{
-        $sql = "SELECT * FROM posts";
-		$sth = $this->db->conn_id->prepare($sql);
-		$sth->execute();
-		$result = $sth->fetchAll(PDO::FETCH_ASSOC);
-        $data = $result;
+        $data = $this->posts->showAll();
+        $this->load->view('layouts/head');
+        $this->load->view('layouts/nav');
 		$this->load->view('home',['data' => $data]);
-	}
+    }
     
     public function insert_data()
     {
         $this->features->random_insert();
+        redirect(base_url().'index.php/home'); 
     }
     
     

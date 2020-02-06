@@ -7,7 +7,6 @@ class Features extends CI_Model  {
     {
         parent::__construct();
         $this->load->database();
-        $this->load->helper('url');
     }
 	
 	public function random_insert()
@@ -23,7 +22,6 @@ class Features extends CI_Model  {
             
             $this->insert($title,$content);
         }
-        redirect(base_url().'/home/show'); 
     }
     
     private function insert($title,$content)
