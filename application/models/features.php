@@ -1,12 +1,27 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
 class Features extends CI_Model  {
 
 	public function __construct()
     {
         parent::__construct();
         $this->load->database();
+    }
+
+    public function log($type, $logMessage)
+    {
+        $log = new Logger('log_message');
+        $log->pushHandler(new StreamHandler(__DIR__ . '/../../log_msg.log', Logger::WARNING));
+        if ($type == 1) {
+            $log->warning($logMessage);
+        } else {
+            $log->error($logMessage);
+        }
     }
 	
 	public function random_insert()
